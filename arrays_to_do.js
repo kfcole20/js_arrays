@@ -21,17 +21,58 @@ console.log(pushFront(c,2))
 
 // Pop Front
 // Given an array, remove and return the value at the beginning of the array. Do this without using any built-in array methods except pop().
-
-
+function popFront(arr)
+{
+    var i=0
+    var arrLen=arr.length
+    var tempArr=[]
+    while(i<arrLen-1)
+    {
+        tempArr[i]=arr.pop();
+        i++;
+    }
+    var val= arr.pop()
+    while(i < tempArr.length)
+    {
+        arr[i]=tempArr[i]
+        i++;
+    }
+    return val
+}
+a=[2,3,5,6,7]
+console.log(popFront(a))
 
 // Insert At
 // Given an array, index, and additional value, insert the value into array at given index. Do this without using built-in array methods. You can think of pushFront(arr,val) as equivalent to insertAt(arr,0,val).
 
+function insertAt(arr, idx, val)
+{
+    if(idx > arr.length)
+    {
+        return "Outside of range"
+    }
+    var newArr=[]
+    newArr[idx]=val
+    for(var i=0;i<arr.length;i++){
+        if(i>=idx)
+        {
+            newArr[i+1]=arr[i];
+            continue;
+        }
+        newArr[i]=arr[i]
+    }
+    return newArr
+}
+a=[2,3,5,6,7]
+b=[1,2,4]
+c=[2]
 
+console.log(insertAt(a, 3, 42))
+console.log(insertAt(b, 4, 100))
+console.log(insertAt(c, 1, 40))
 
 // Remove At (Bonus Challenge)
 // Given an array and an index into array, remove and return the array value at that index. Do this without using built-in array methods except pop(). Think of popFront(arr) as equivalent to removeAt(arr,0).
-
 
 
 // Swap Pairs (Bonus Challenge)
