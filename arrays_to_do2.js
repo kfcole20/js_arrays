@@ -27,13 +27,35 @@ console.log(reverseArr(c))
 // Fourth: minimize the touches of each element.
 
 function rotateArr(arr, shiftBy){
-    var temp;
-    for(var i=0; i<arr.length;i++){
-        temp=arr[i+shiftBy]
-        arr[i+shiftBy]=arr[i]
+    var moves;
+    if (shiftBy > 0) {
+        moves = shiftBy % arr.length;
+    }
+    else {
+        moves = Math.abs(shiftBy) % arr.length;
+    }
+    if (shiftBy > 0) {
+        for (var i = 0; i < moves; i++) 
+        {
+            var temp = arr[arr.length - 1];
+            for (var k = arr.length - 2; k >= 0; k--)
+            {
+                arr[k+1] = arr[k];
+            }
+            arr[0] = temp;
+        }
+    } else {
+        for (var i = 0; i < moves; i++) {
+            var temp = arr[0];
+            for (var k = 1; k < arr.length; k++) {
+                arr[k-1] = arr[k];
+            }
+            arr[arr.length - 1] = temp;
+        }
     }
     return arr
 }
+
 a=[1,2,3,4]
 b=[1,2,3]
 c=[2,3,4,5,6,7,8,9]
@@ -42,12 +64,25 @@ console.log(rotateArr(b,2))
 console.log(rotateArr(c,3))
 
 // Alan is good at breaking secret codes. One method is to eliminate values that lie outside of a specific known range. Given arr and values min and max, retain only the array values between min and max. Work in-place: return the array you are given, with values in original order. No built-in array functions.
+function codeBreak(arr, min, max){
+    for(var i=0; i<arr.length;i++){
+        if(arr[i]< min || arr[i] >max){
+            arr[i]="Outside of Range"
+        }
+        else
+        {
+            continue;
+        } 
+    }
+    return arr
+}
 
-
-
-
-
-
+a=[1,2,3,4,5]
+b=[1,2,3,56,67,790]
+c=[2,3,4,5,6,7,8,9]
+console.log(codeBreak(a,3,5))
+console.log(codeBreak(b,5,100))
+console.log(codeBreak(c,5,7))
 
 
 
@@ -73,3 +108,6 @@ var c=[2,3,4,5,6,7,8,9];
 console.log(arrConcat(a,b));
 console.log(arrConcat(b,c));
 console.log(arrConcat(a,c));
+
+
+
